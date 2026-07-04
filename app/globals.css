@@ -1,0 +1,156 @@
+:root {
+  /* Marca COPOMA */
+  --navy: #052653;
+  --navy-900: #03162e;
+  --navy-800: #052653;
+  --navy-700: #0a366e;
+  --navy-600: #114a8f;
+  --teal: #1786a2;
+  --teal-bright: #2ba6c4;
+  --teal-soft: rgba(23, 134, 162, 0.14);
+
+  --bg: #041a33;
+  --bg-deep: #03142a;
+  --surface: #082445;
+  --surface-2: #0b2c52;
+  --line: rgba(120, 170, 210, 0.16);
+  --line-strong: rgba(120, 170, 210, 0.28);
+
+  --fg: #eaf2fb;
+  --fg-soft: #b7c9dd;
+  --fg-mut: #8aa1bb;
+
+  --gold: #d9a441;
+  --ok: #2fae7a;
+  --warn: #e0a83a;
+  --busy: #e06a5a;
+
+  --shell-max: 480px;
+  --nav-h: 66px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--fg);
+  font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  min-height: 100dvh;
+  overscroll-behavior-y: none;
+}
+
+h1, h2, h3, h4, .display {
+  font-family: "Sora", "Manrope", system-ui, sans-serif;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+img { display: block; max-width: 100%; }
+
+/* Shell móvil-first centrado */
+.shell {
+  position: relative;
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  min-height: 100dvh;
+  background:
+    radial-gradient(1100px 520px at 50% -8%, rgba(23,134,162,0.20), transparent 60%),
+    radial-gradient(800px 400px at 100% 12%, rgba(17,74,143,0.28), transparent 65%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 55%, #030f22 100%);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.page {
+  padding: 0 18px calc(var(--nav-h) + env(safe-area-inset-bottom) + 26px);
+}
+
+/* Utilidades */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal-bright);
+}
+.muted { color: var(--fg-mut); }
+.soft { color: var(--fg-soft); }
+
+.card {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  border: 1px solid var(--line-strong);
+  background: rgba(255,255,255,0.03);
+  color: var(--fg-soft);
+}
+
+.divider { height: 1px; background: var(--line); border: 0; }
+
+/* Barras de saturación */
+.gaugebar {
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.gaugebar > span { display: block; height: 100%; border-radius: 999px; }
+
+/* Bottom nav */
+.bottomnav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 100%;
+  max-width: var(--shell-max);
+  height: calc(var(--nav-h) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: rgba(5, 20, 42, 0.86);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line-strong);
+  z-index: 60;
+}
+.navitem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--fg-mut);
+  transition: color 0.18s ease;
+}
+.navitem svg { width: 23px; height: 23px; }
+.navitem.active { color: var(--teal-bright); }
+
+/* Scrollbar oculto sutil */
+::-webkit-scrollbar { width: 0; height: 0; }
+
+@media (min-width: 620px) {
+  .shell { box-shadow: 0 0 0 1px var(--line), 0 40px 120px rgba(0,0,0,0.55); border-radius: 0; }
+}
